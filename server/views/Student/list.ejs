@@ -1,0 +1,40 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Book Database-->
+<div class="wrapper">
+    <main class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h1><%= title %></h1>
+                <a href="#" class="btn btn-primary" role="button">
+                    <i class="fa-solid fa-plus"></i> Add Student
+                </a>
+                <br><br>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="d-flex table-primary">
+                        <th class="text-center col">First Name</th>
+                        <th class="text-center col">Last Name</th>
+                        <th class="text-center col">Program</th>
+                        <th class="text-center col">Degree</th>
+                        <th class="text-center col">Option</th>
+                    </tr>
+                    <% for(let count=0;count<StudentList.length;count++) { %>
+                        <tr class="d-flex">
+                            <td class="col"><%= StudentList[count].firstName %></td>
+                            <td class="col"><%= StudentList[count].lastName %></td>
+                            <td class="col"><%= StudentList[count].Program %></td>
+                            <td class="col"><%= StudentList[count].Degree %></td>
+                            <td class="text-center col">
+                                <a href="#" class="btn btn-primary btn-sm mx-2">
+                                    <i class="fa-solid fa-plus"></i> View More
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+<%- include ../Partials/footer.ejs%>
