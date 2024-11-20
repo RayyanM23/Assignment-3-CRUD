@@ -6,7 +6,8 @@ let studentModel = mongoose.Schema({
     Program: String,
     Degree: String,
     GPA: Number,
-    feesDue: Number
+    feesDue: Number,
+    addComment: String
 },
 {
     collection:"Students"

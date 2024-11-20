@@ -25,4 +25,42 @@ try{
     }
 });
 
+/* Create Operation --> Get route for displaying the Add Page*/
+router.get('/add', async(req,res,next) => {
+    try{
+        res.render('Student/add',{
+            title: 'Add Student'
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+/* Create Operation --> Post route for processing the Add Page*/
+router.post('/add', async(req,res,next) => {
+    try{
+        let newStudent = Student({
+            "firstName":req.body.firstName,
+            "lastName":req.body.lastName,
+            "Program":req.body.Program,
+            "Degree":req.body.Degree,
+            "GPA":req.body.GPA,
+            "feesDue":req.body.feesDue,
+            "addComment":req.body.addComment
+        });
+        Student.create(newStudent).then(()=>{
+            res.redirect('/students')
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+
 module.exports = router;
