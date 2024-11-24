@@ -63,4 +63,81 @@ router.post('/add', async(req,res,next) => {
     }
 });
 
+/* Read Operation --> Get route for displaying the studentExtras Page*/
+router.get('/viewmore/:id', async(req,res,next) => {
+    try{
+        const id = req.params.id;
+        const studentToFind = await Student.findById(id);
+        res.render('Student/studentExtras',{
+            title: `${studentToFind.firstName} ${studentToFind.lastName}`,
+            Student: studentToFind
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+
+/* Update Operation --> Get route for displaying the Edit Page*/
+router.get('/edit/:id', async(req,res,next) => {
+    try{
+        const id = req.params.id;
+        const studentToEdit = await Student.findById(id);
+        res.render('Student/edit',{
+            title: 'Edit Student Info',
+            Student: studentToEdit
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+/* Update Operation --> Post route for processing the Edit Page*/
+router.post('/edit/:id', async(req,res,next) => {
+    try{
+        let id = req.params.id;
+        let updateStudent = Student({
+            "_id":id,
+            "firstName":req.body.firstName,
+            "lastName":req.body.lastName,
+            "Program":req.body.Program,
+            "Degree":req.body.Degree,
+            "GPA":req.body.GPA,
+            "feesDue":req.body.feesDue,
+            "addComment":req.body.addComment
+        });
+        Student.findByIdAndUpdate(id,updateStudent).then(()=>{
+            res.redirect('/students')
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+
+/* Delete Operation --> Get route to perform Delete Operation*/
+router.get('/delete/:id', async(req,res,next) => {
+    try{
+        let id = req.params.id;
+        Student.deleteOne({_id:id}).then(()=>{
+            res.redirect('/students')
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.render('Student/list',{
+            error:'Error on the Server'
+        })
+    }
+});
+
 module.exports = router;

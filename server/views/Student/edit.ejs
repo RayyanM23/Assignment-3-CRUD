@@ -1,0 +1,50 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Content for Add Page-->
+<div class="wrapper">
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <br>
+            <h1><%= title %></h1>
+            <a href="/students/viewmore/<%= Student._id %>" class="btn btn-primary" role="button">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </a>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="firstNameTextField">First Name</label>
+                    <input type="text" class="form-control" id="firstNameTextField" placeholder="Enter the first name" name="firstName" value="<%= Student.firstName %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastNameTextField">Last Name</label>
+                    <input type="text" class="form-control" id="lastNameTextField" placeholder="Enter the last name" name="lastName" value="<%= Student.lastName %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="programTextField">Program</label>
+                    <input type="text" class="form-control" id="programTextField" placeholder="Enter the enrolled program" name="Program" value="<%= Student.Program %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="degreeTextField">Degree</label>
+                    <input type="text" class="form-control" id="degreeTextField" placeholder="Enter the degree" name="Degree" value="<%= Student.Degree %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="gpaTextField">GPA</label>
+                    <input type="text" class="form-control" id="gpaTextField" placeholder="Enter the GPA" name="GPA" value="<%= Student.GPA %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="feesDueTextField">Fees Due</label>
+                    <input type="text" class="form-control" id="feesDueTextField" placeholder="Enter the remaining fees due" name="feesDue" value="<%= Student.feesDue %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="addCommentTextArea">Additional Comments</label>
+                    <textarea type="text" class="form-control" id="addCommentTextArea" placeholder="Enter any additional comments/notes" name="addComment"><%= Student.addComment %></textarea>
+                </div>
+                <br>
+                <button class="btn btn-primary" type="submit">Submit <i class="fas fa-edit"></i></button>
+                <button class="btn btn-warning" type="reset">Cancel <i class="fa-solid fa-ban"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<%- include ../Partials/footer.ejs%>
