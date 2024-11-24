@@ -4,9 +4,8 @@ let mongoose = require('mongoose');
 // Telling my router that I have this model
 let Student = require('../model/student');
 const student = require('../model/student');
-// let studentController = require('../controllers/student.js')         !!!
 
-/* Get route for the stduent list - Read Operation */
+/* Get route for the student list - Read Operation */
 /* GET, Post, Put */
 
 /* Read Operation --> Get route for displaying the students*/
@@ -87,7 +86,7 @@ router.get('/edit/:id', async(req,res,next) => {
         const id = req.params.id;
         const studentToEdit = await Student.findById(id);
         res.render('Student/edit',{
-            title: 'Edit Student Info',
+            title: 'Edit Student Profile',
             Student: studentToEdit
         })
     }
@@ -113,7 +112,7 @@ router.post('/edit/:id', async(req,res,next) => {
             "addComment":req.body.addComment
         });
         Student.findByIdAndUpdate(id,updateStudent).then(()=>{
-            res.redirect('/students')
+            res.redirect(`/students/viewmore/${id}`)
         })
     }
     catch(err){
